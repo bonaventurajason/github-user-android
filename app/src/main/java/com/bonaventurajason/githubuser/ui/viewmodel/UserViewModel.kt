@@ -43,17 +43,18 @@ class UserViewModel(
         safeSearchGetUserFollowingCall(username)
     }
 
-    fun saveFavouriteUser(user: User) = viewModelScope.launch {
-        userRepository.insertFavouriteUser(user)
-    }
+    fun saveFavouriteUser(user: User, context: Context) =
+        userRepository.insertFavouriteUser(user, context)
 
-    fun getFavouriteUser() = userRepository.getFavouriteUser()
+    fun getFavouriteUser(context: Context) =
+        userRepository.getFavouriteUser(context)
 
-    fun checkFavouriteUser(username: String) = userRepository.isUserFavourite(username)
+    fun checkFavouriteUser(id: Int, context: Context) =
+        userRepository.isUserFavourite(id, context)
 
-    fun deleteFavouriteUser(user: User) = viewModelScope.launch {
-        userRepository.deleteFavouriteUser(user)
-    }
+    fun deleteFavouriteUser(user: User, context: Context) =
+        userRepository.deleteFavouriteUser(user, context)
+
 
     private suspend fun safeSearchUserCall(username: String) {
         searchUserLiveData.postValue(Resource.Loading())

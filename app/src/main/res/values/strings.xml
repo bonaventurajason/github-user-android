@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">github-user-android</string>
+    <string name="app_name">BFAA Github User</string>
     <string name="title_home_fragment">Github Users</string>
     <string name="search_hint">Please enter username</string>
     <string name="setting">Setting</string>
@@ -15,7 +15,13 @@
     <string name="reminder_key">reminder</string>
     <string name="language_key">language</string>
     <string name="reminder">Reminder</string>
-    <string name="reminder_summary">This is reminder for github app at 09:00 am</string>
+    <string name="reminder_summary">This is a daily reminder for Github app at 09:00 AM</string>
     <string name="language">Language</string>
-    <string name="notification_message">Do not forget to like users in Github!</string>
+    <string name="notification_message">Give a like to users in Github!</string>
+    <string name="success_delete"> User has been deleted.</string>
+    <string name="undo">Undo</string>
+    <string name="reminder_off"> Daily reminder has been turned off.</string>
+    <string name="reminder_on">Daily reminder has been turned on.</string>
+    <string name="not_favourite_user">User has been removed from Favourite.</string>
+    <string name="favourite_user">User has been added to Favourite.</string>
 </resources>

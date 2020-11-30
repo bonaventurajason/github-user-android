@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ConsumerApp</string>
+    <string name="title_home_fragment">Github Users</string>
+    <string name="search_hint">Please enter username</string>
+    <string name="setting">Setting</string>
+    <string name="hireable">Available for hire</string>
+    <string name="not_hireable">Unavailable for hire</string>
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
+    <string name="favourite">Favourite</string>
+    <string name="title_user_detail_fragment">User Detail</string>
+    <string name="title_favourite_fragment">Favourite</string>
+    <string name="title_setting_fragment">Setting</string>
+    <string name="swipe_left_to_delete">Swipe left to delete >></string>
+    <string name="reminder_key">reminder</string>
+    <string name="language_key">language</string>
+    <string name="reminder">Reminder</string>
+    <string name="reminder_summary">This is reminder for github app at 09:00 am</string>
+    <string name="language">Language</string>
+    <string name="notification_message">Do not forget to like users in Github!</string>
+</resources>

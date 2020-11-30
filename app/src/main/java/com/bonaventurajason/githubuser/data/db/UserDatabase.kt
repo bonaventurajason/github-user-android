@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.bonaventurajason.githubuser.data.model.User
-import com.bonaventurajason.githubuser.data.model.UserDetailResponse
+import com.bonaventurajason.githubuser.helper.Constant.DB_NAME
 
 
 @Database(
@@ -28,8 +28,8 @@ abstract class UserDatabase : RoomDatabase() {
         private fun createDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             UserDatabase::class.java,
-            "user_db.db"
-        ).build()
+            DB_NAME
+        ).allowMainThreadQueries().build()
 
 
     }
