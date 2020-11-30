@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BFAA Github User</string>
+    <string name="title_home_fragment">Pengguna Github</string>
+    <string name="search_hint">Masukkan nama pengguna</string>
+    <string name="setting">Pengaturan</string>
+    <string name="hireable">Available for hire</string>
+    <string name="not_hireable">Unavailable for hire</string>
+    <string name="tab_followers">Pengikut</string>
+    <string name="tab_following">Mengikuti</string>
+    <string name="favourite">Favorit</string>
+    <string name="title_user_detail_fragment">Detail Pengguna</string>
+    <string name="title_favourite_fragment">Favorit</string>
+    <string name="title_setting_fragment">Pengaturan</string>
+    <string name="swipe_left_to_delete">Geser kiri untuk menghapus >></string>
+    <string name="reminder_key">Pengingat</string>
+    <string name="language_key">Bahasa</string>
+    <string name="reminder">Pengingat</string>
+    <string name="reminder_summary">Ini adalah pengingat untuk aplikasi github setiap jam 9 pagi</string>
+    <string name="language">Bahasa</string>
+    <string name="notification_message">Jangan lupa untuk menyukai pengguna di Github!</string>
+    <string name="success_delete">Berhasil menghapus pengguna dari daftar favorit</string>
+    <string name="undo">Undo</string>
+    <string name="reminder_off">Pengingat harian telah dimatikan</string>
+    <string name="reminder_on">Pengingat harian telah dinyalakan</string>
+    <string name="not_favourite_user">Pengguna ini dihapus dari daftar favorit</string>
+    <string name="favourite_user">Pengguna ini ditambahkan ke daftar favorit</string>
+</resources>

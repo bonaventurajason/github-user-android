@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <permission android:name="com.bonaventurajason.githubuser.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.bonaventurajason.githubuser.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:name=".GithubUserApplication"
@@ -16,12 +18,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Githubuserandroid">
 
+        <provider
+            android:name=".data.db.provider.FavouriteProvider"
+            android:authorities="com.bonaventurajason.githubuser"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.bonaventurajason.githubuser.READ_DATABASE"
+            android:writePermission="com.bonaventurajason.githubuser.WRITE_DATABASE"/>
+
         <receiver
             android:name=".data.service.ReminderAlarmReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

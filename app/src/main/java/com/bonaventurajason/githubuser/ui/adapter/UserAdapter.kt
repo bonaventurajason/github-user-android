@@ -1,6 +1,5 @@
 package com.bonaventurajason.githubuser.ui.adapter
 
-import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

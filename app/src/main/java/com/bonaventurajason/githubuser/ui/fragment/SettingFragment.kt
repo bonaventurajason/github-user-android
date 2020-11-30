@@ -4,18 +4,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.bonaventurajason.githubuser.R
 import com.bonaventurajason.githubuser.data.service.ReminderAlarmHelper
 import com.bonaventurajason.githubuser.helper.Constant.REMINDER_ID_REPEATING
-import com.bumptech.glide.Glide.init
 import java.util.*
 
 
@@ -85,7 +80,7 @@ class SettingFragment : PreferenceFragmentCompat(),
                 REMINDER_ID_REPEATING
             )
         }
-        Toast.makeText(requireContext(), "Daily reminder has successfully turned off ", Toast.LENGTH_LONG)
+        Toast.makeText(requireContext(), getString(R.string.reminder_off), Toast.LENGTH_LONG)
             .show()
     }
 
@@ -104,16 +99,8 @@ class SettingFragment : PreferenceFragmentCompat(),
 
             )
         }
-        Toast.makeText(requireContext(), "Daily reminder has successfully turned on ", Toast.LENGTH_LONG)
+        Toast.makeText(requireContext(), getString(R.string.reminder_on), Toast.LENGTH_LONG)
             .show()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onResume() {

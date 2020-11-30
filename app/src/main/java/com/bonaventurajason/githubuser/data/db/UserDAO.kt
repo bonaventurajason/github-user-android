@@ -1,5 +1,6 @@
 package com.bonaventurajason.githubuser.data.db
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.bonaventurajason.githubuser.data.model.User
@@ -8,13 +9,16 @@ import com.bonaventurajason.githubuser.data.model.User
 interface UserDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: User) : Long
+    fun insertUser(user: User) : Long
 
     @Query("SELECT * FROM user")
-    fun getAllUsers(): LiveData<List<User>>
+    fun getAllUsers(): Cursor
 
-    @Delete
-    suspend fun deleteUser(user: User)
+    @Query("SELECT * FROM user WHERE ID = :id")
+    fun getUserById(id: Int): Cursor
+
+    @Query("DELETE FROM user WHERE ID = :id")
+    fun deleteUser(id: Int): Int
 
     @Query("SELECT * FROM user WHERE login = :username")
     fun checkFavouriteUser(username: String) : LiveData<User>

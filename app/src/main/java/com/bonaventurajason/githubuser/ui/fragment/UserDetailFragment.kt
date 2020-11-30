@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.bonaventurajason.githubuser.R
 import com.bonaventurajason.githubuser.data.model.User
 import com.bonaventurajason.githubuser.data.model.UserDetailResponse
@@ -17,9 +16,6 @@ import com.bonaventurajason.githubuser.ui.adapter.SectionPagerAdapter
 import com.bonaventurajason.githubuser.ui.viewmodel.UserViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_user_detail.*
-import kotlinx.android.synthetic.main.item_user.view.*
-import timber.log.Timber
 
 class UserDetailFragment : Fragment() {
     private var _binding: FragmentUserDetailBinding? = null
@@ -46,7 +42,7 @@ class UserDetailFragment : Fragment() {
 
         viewModel.getUserDetail(user.login)
 
-        viewModel.detailUserLiveData.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.detailUserLiveData.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
@@ -68,14 +64,13 @@ class UserDetailFragment : Fragment() {
             }
         })
         setTabLayout(user.login)
-        checkIsUserFavourite(user.login)
+        checkIsUserFavourite(user.id)
 
         clickToFavouriteUser(user, view)
     }
 
-    private fun checkIsUserFavourite(username: String) {
-        viewModel.checkFavouriteUser(username).observe(viewLifecycleOwner, Observer {
-            Timber.d("Is favourite $isFavourite")
+    private fun checkIsUserFavourite(id: Int) {
+        viewModel.checkFavouriteUser(id, requireContext()).observe(viewLifecycleOwner, {
             isFavourite = if(it != null){
                 binding.fab.setImageResource(R.drawable.ic_thumb_down)
                 true
@@ -89,14 +84,14 @@ class UserDetailFragment : Fragment() {
     private fun clickToFavouriteUser(user: User, view: View) {
         binding.fab.setOnClickListener {
             if(isFavourite){
-                viewModel.deleteFavouriteUser(user)
-                Snackbar.make(view, "This user become your un-favourite", Snackbar.LENGTH_SHORT).show()
+                viewModel.deleteFavouriteUser(user, requireContext())
+                Snackbar.make(view, getString(R.string.not_favourite_user), Snackbar.LENGTH_SHORT).show()
                 binding.fab.setImageResource(R.drawable.ic_thumb_up)
                 isFavourite = false
             }
             else{
-                viewModel.saveFavouriteUser(user)
-                Snackbar.make(view, "This user become your favourite", Snackbar.LENGTH_SHORT).show()
+                viewModel.saveFavouriteUser(user, requireContext())
+                Snackbar.make(view, getString(R.string.favourite_user), Snackbar.LENGTH_SHORT).show()
                 binding.fab.setImageResource(R.drawable.ic_thumb_down)
                 isFavourite = true
             }

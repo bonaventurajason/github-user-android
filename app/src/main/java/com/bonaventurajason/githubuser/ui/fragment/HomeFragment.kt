@@ -6,18 +6,16 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bonaventurajason.githubuser.R
 import com.bonaventurajason.githubuser.databinding.FragmentHomeBinding
 import com.bonaventurajason.githubuser.helper.Resource
+import com.bonaventurajason.githubuser.helper.Utils.hideKeyboard
 import com.bonaventurajason.githubuser.ui.MainActivity
 import com.bonaventurajason.githubuser.ui.adapter.UserAdapter
 import com.bonaventurajason.githubuser.ui.viewmodel.UserViewModel
-import timber.log.Timber
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -45,12 +43,11 @@ class HomeFragment : Fragment() {
 
         clickUserDetail()
 
-        viewModel.searchUserLiveData.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.searchUserLiveData.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { userResponse ->
-                        Timber.d("List user: $userResponse.users")
                         userAdapter.submitList(userResponse.items)
                     }
                 }
@@ -87,10 +84,14 @@ class HomeFragment : Fragment() {
         binding.searchUser.apply {
             queryHint = resources.getString(R.string.search_hint)
             isIconified = false
+            isFocusable = false
+            isFocusableInTouchMode = true
+            clearFocus()
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query != null) {
                         viewModel.searchUser(query)
+                        context?.hideKeyboard(requireView())
                     }
                     return true
                 }
@@ -99,6 +100,13 @@ class HomeFragment : Fragment() {
                     return false
                 }
             })
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.searchUser.apply {
+            clearFocus()
         }
     }
 

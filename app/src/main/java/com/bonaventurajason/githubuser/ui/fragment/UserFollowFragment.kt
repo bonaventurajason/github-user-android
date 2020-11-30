@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bonaventurajason.githubuser.databinding.FragmentUserFollowBinding
 import com.bonaventurajason.githubuser.helper.Constant.ARG_POSITION
@@ -55,12 +54,11 @@ class UserFollowFragment : Fragment() {
         arguments?.apply {
             if(getInt(ARG_POSITION) == 0){
                 getString(ARG_USERNAME)?.let { viewModel.getUserFollower(it) }
-                viewModel.followerUserLiveData.observe(viewLifecycleOwner, Observer {response ->
+                viewModel.followerUserLiveData.observe(viewLifecycleOwner, { response ->
                     when (response) {
                         is Resource.Success -> {
 //                            hideProgressBar()
                             response.data?.let { userResponse ->
-                                Timber.d("List user: $userResponse")
                                 userAdapter.submitList(userResponse)
                             }
                         }
@@ -80,7 +78,7 @@ class UserFollowFragment : Fragment() {
             }
             else{
                 getString(ARG_USERNAME)?.let { viewModel.getUserFollowing(it) }
-                viewModel.followingUserLiveData.observe(viewLifecycleOwner, Observer {response ->
+                viewModel.followingUserLiveData.observe(viewLifecycleOwner, { response ->
                     when (response) {
                         is Resource.Success -> {
 //                            hideProgressBar()
